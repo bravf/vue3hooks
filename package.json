@@ -1,0 +1,36 @@
+{
+  "name": "vue3hooks",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "dayjs": "^1.9.6",
+    "lodash.assign": "^4.2.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.debounce": "^4.0.8",
+    "lodash.isboolean": "^3.0.3",
+    "lodash.isnumber": "^3.0.3",
+    "lodash.throttle": "^4.1.1",
+    "resize-observer-polyfill": "^1.5.1",
+    "screenfull": "^5.0.2",
+    "vue": "^3.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^1.1.4",
+    "@vue/compiler-sfc": "^3.0.5",
+    "babel-eslint": "^10.1.0",
+    "element-plus": "^1.0.2-beta.32",
+    "eslint": "^7.21.0",
+    "eslint-plugin-vue": "^7.6.0",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.2.1",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^10.0.2",
+    "vite": "^2.0.1",
+    "vue-router": "^4.0.4"
+  }
+}
