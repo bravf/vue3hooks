@@ -341,23 +341,18 @@ const move = useMove([options])
 #### Demo:
 
 ```html
-<style lang="sass" scoped>
-  .move-div
-    position: absolute
-    width: 200px
-    height: 200px
-    border: 1px solid red
-</style>
 <template lang="pug">
-  .move h2 move test .move-div(@mousedown='(e) => move(e, divPos)', :style='{ left: divPos.x + "px",
-  top: divPos.y + "px" }') move me
+  <div @mousedown="(e) => move(e, divPos)" :style='{ left: divPos.x + "px", top: divPos.y + "px" }'>
+    move me
+  </div>
 </template>
 <script>
-  import { useMove } from '../index.js'
+  import { useMove } from 'vue3hooks'
+  import { reactive } from 'vue'
   export default {
     name: 'Mouse',
     setup() {
-      const divPos = { x: 100, y: 100 }
+      const divPos = reactive({ x: 100, y: 100 })
       const move = useMove({
         onMove: (pos, moveDistance) => {
           pos.x = Math.max(0, pos.x)
@@ -386,23 +381,21 @@ const move = useFingerMove([options])
 #### Demo（移动端使用）:
 
 ```html
-<style lang="sass" scoped>
-  .move-div
-    position: absolute
-    width: 200px
-    height: 200px
-    border: 1px solid red
-</style>
 <template lang="pug">
-  .move h2 move test .move-div(@touchstart='(e) => move(e, divPos)', :style='{ left: divPos.x +
-  "px", top: divPos.y + "px" }') move me
+  <div
+    @touchstart="(e) => move(e, divPos)"
+    :style='{ left: divPos.x + "px", top: divPos.y + "px" }'
+  >
+    move me
+  </div>
 </template>
 <script>
-  import { useFingerMove } from '../index.js'
+  import { useFingerMove } from 'vue3hooks'
+  import { reactive } from 'vue'
   export default {
     name: 'Mouse',
     setup() {
-      const divPos = { x: 100, y: 100 }
+      const divPos = reactive({ x: 100, y: 100 })
       const move = useFingerMove({
         onMove: (pos, moveDistance) => {
           pos.x = Math.max(0, pos.x)
@@ -431,26 +424,29 @@ const { state, setFull, exitFull, toggleFull } = useFullscreen(target, [options]
 #### Demo
 
 ```html
-<style lang="sass" scoped>
-  .fullscreen
-    background: #fff
-</style>
-<template lang="pug">
-  .fullscreen(ref="div") h2 fullscreen test div {{fullscreen.state.value}} el-button-group
-  el-button(@click="fullscreen.setFull()") setFull el-button(@click="fullscreen.exitFull()")
-  exitFull el-button(@click="fullscreen.toggleFull()") toggleFull
+<template>
+  <div class="fullscreen" ref="div">
+    <div>{{ fullscreen.state.value }}</div>
+    <el-button-group>
+      <el-button @click="fullscreen.setFull()"> setFull </el-button>
+      <el-button @click="fullscreen.exitFull()"> exitFull </el-button>
+      <el-button @click="fullscreen.toggleFull()">toggleFull</el-button>
+    </el-button-group>
+  </div>
 </template>
 <script>
-  import { useFullscreen } from '../index.js'
+  import { useFullscreen } from 'vue3hooks'
   export default {
     name: 'Fullscreen',
     setup() {
-      const fullscreen = useFullscreen(() => this.$refs.div, {
+      const div = ref(null)
+      const fullscreen = useFullscreen(() => div.value, {
         onFull: () => console.log('full'),
         onExitFull: () => console.log('exit full'),
       })
       return {
         fullscreen,
+        div,
       }
     },
   }
@@ -470,11 +466,12 @@ const { state, start, stop, restart } = useInterval(callback, (delay = 1000), (i
 ```html
 <style lang="sass" scoped></style>
 <template lang="pug">
-  .interval h2 test interval div p 短信验证码倒计时 el-button(@click='msgCountdown.restart',
-  :disabled='msgCountdown.state.activated') {{ msgCountdownValue }}
+  <el-button @click="msgCountdown.restart" , :disabled="msgCountdown.state.activated">
+    {{ msgCountdownValue }}
+  </el-button>
 </template>
 <script>
-  import { useInterval, useComputed } from '../index.js'
+  import { useInterval, useComputed } from 'vue3hooks'
   export default {
     name: 'Interval',
     setup() {
@@ -511,7 +508,7 @@ const { start, stop } = useTimeout(callback, (delay = 1000), (immediate = true))
   el-button(@click='timeout.start') 开始
 </template>
 <script>
-  import { useTimeout } from '../index.js'
+  import { useTimeout } from 'vue3hooks'
   export default {
     name: 'Timeout',
     setup() {
@@ -542,7 +539,7 @@ const state = useTitle((title = document.title), (restoreOnUnmount = false))
   离开此页面，标题还原为默认标题
 </template>
 <script>
-  import { useTitle, useTimeout } from '../index.js'
+  import { useTitle, useTimeout } from 'vue3hooks'
   export default {
     name: 'Timeout',
     setup() {
@@ -581,14 +578,15 @@ const state = useCountdown(targetDate, (interval = 1000))
 
 ```html
 <template lang="pug">
-  .interval h2 test countdown p There are {{ countdown.formatted.days }} days {{
-  countdown.formatted.hours }} hours {{ countdown.formatted.minutes }} minutes {{
-  countdown.formatted.seconds }} seconds {{ countdown.formatted.milliseconds }} milliseconds until
-  {{ countdown.targetDate }} div | 验证码 el-button(@click="() => msgCountdown.targetDate =
-  Date.now() + 5000", :disabled="msgCountdown.countdown !== 0")| {{msgCountdownValue}}
+  <p>
+    There are {{ countdown.formatted.days }} days {{ countdown.formatted.hours }} hours {{
+    countdown.formatted.minutes }} minutes {{ countdown.formatted.seconds }} seconds {{
+    countdown.formatted.milliseconds }} milliseconds until {{ countdown.targetDate }}
+  </p>
 </template>
 <script>
-  import { useCountdown, useTimeout, useComputed } from '../index.js'
+  import { useCountdown, useTimeout } from 'vue3hooks'
+  import { computed } from 'vue'
   export default {
     name: 'Countdown',
     setup() {
@@ -598,10 +596,10 @@ const state = useCountdown(targetDate, (interval = 1000))
       }, 1000)
 
       const msgCountdown = useCountdown()
-      useComputed('msgCountdownValue', () =>
+      const msgCountdownValue = computed(() =>
         msgCountdown.countdown ? Math.round(msgCountdown.countdown / 1000) + 's' : '发送验证码',
       )
-      return { countdown, msgCountdown }
+      return { countdown, msgCountdown, msgCountdownValue }
     },
   }
 </script>
@@ -613,16 +611,17 @@ const state = useCountdown(targetDate, (interval = 1000))
 
 ```html
 <template lang="pug">
-  .title h2 test wheel .wheel(:style='{ transform: "scale(" + zoomState.value + ")" }')
+  <div>(:style='{ transform: "scale(" + zoomState.value + ")" }')</div>
 </template>
 <script>
-  import { useWheel } from '../index.js'
+  import { reactive } from 'vue'
+  import { useWheel } from 'vue3hooks'
   export default {
     name: 'Wheel',
     setup() {
-      const zoomState = {
+      const zoomState = reactive({
         value: 1,
-      }
+      })
       const zoom = (type = '+') => {
         if (type === '+') {
           zoomState.value *= 1 + 0.015

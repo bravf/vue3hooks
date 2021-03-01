@@ -1,12 +1,13 @@
 import screenfull from 'screenfull'
 import { onBeforeUnmount } from 'vue'
 import { getTargetElement } from './_dom'
+import { reactive } from 'vue'
 
 const useFullscreen = (target = document.body, options = {}) => {
   const { onExitFull, onFull } = options
-  const state = {
+  const state = reactive({
     value: false,
-  }
+  })
   const setFull = () => {
     const el = getTargetElement(target)
     console.log(el)

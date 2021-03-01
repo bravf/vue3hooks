@@ -5,7 +5,7 @@
 <template lang="pug">
 .fullscreen(ref='div')
   h2 fullscreen test
-  div(ref='div') {{ fullscreen.state.value }}
+  div {{ fullscreen.state.value }}
   el-button-group
     el-button(@click='fullscreen.setFull()') setFull
     el-button(@click='fullscreen.exitFull()') exitFull
