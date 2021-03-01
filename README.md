@@ -38,7 +38,7 @@ import { useRequest } from 'vue3hooks'
 
 #### Demo:
 
-```javascript
+```html
 <template>
 <div class="list-page">
   <div v-if="getListReq.state.loading">loading...</div>
