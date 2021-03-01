@@ -2,18 +2,18 @@
 
 ## 介绍
 
-vue3hooks 是针对 vue3.x 的一款 composition api 的工具库
+vue3hook 是针对 vue3.x 的一款 composition api 的工具库
 
 ## 安装:
 
 ```
-npm install --save vue3hooks
+npm install --save vue3hook
 ```
 
 ## 使用:
 
 ```javascript
-import { useRequest } from 'vue3hooks'
+import { useRequest } from 'vue3hook'
 ```
 
 ## Api Table of Contents
@@ -347,7 +347,7 @@ const move = useMove([options])
   </div>
 </template>
 <script>
-  import { useMove } from 'vue3hooks'
+  import { useMove } from 'vue3hook'
   import { reactive } from 'vue'
   export default {
     name: 'Mouse',
@@ -390,7 +390,7 @@ const move = useFingerMove([options])
   </div>
 </template>
 <script>
-  import { useFingerMove } from 'vue3hooks'
+  import { useFingerMove } from 'vue3hook'
   import { reactive } from 'vue'
   export default {
     name: 'Mouse',
@@ -435,7 +435,7 @@ const { state, setFull, exitFull, toggleFull } = useFullscreen(target, [options]
   </div>
 </template>
 <script>
-  import { useFullscreen } from 'vue3hooks'
+  import { useFullscreen } from 'vue3hook'
   export default {
     name: 'Fullscreen',
     setup() {
@@ -471,7 +471,7 @@ const { state, start, stop, restart } = useInterval(callback, (delay = 1000), (i
   </el-button>
 </template>
 <script>
-  import { useInterval, useComputed } from 'vue3hooks'
+  import { useInterval, useComputed } from 'vue3hook'
   export default {
     name: 'Interval',
     setup() {
@@ -508,7 +508,7 @@ const { start, stop } = useTimeout(callback, (delay = 1000), (immediate = true))
   el-button(@click='timeout.start') 开始
 </template>
 <script>
-  import { useTimeout } from 'vue3hooks'
+  import { useTimeout } from 'vue3hook'
   export default {
     name: 'Timeout',
     setup() {
@@ -539,7 +539,7 @@ const state = useTitle((title = document.title), (restoreOnUnmount = false))
   离开此页面，标题还原为默认标题
 </template>
 <script>
-  import { useTitle, useTimeout } from 'vue3hooks'
+  import { useTitle, useTimeout } from 'vue3hook'
   export default {
     name: 'Timeout',
     setup() {
@@ -585,7 +585,7 @@ const state = useCountdown(targetDate, (interval = 1000))
   </p>
 </template>
 <script>
-  import { useCountdown, useTimeout } from 'vue3hooks'
+  import { useCountdown, useTimeout } from 'vue3hook'
   import { computed } from 'vue'
   export default {
     name: 'Countdown',
@@ -615,7 +615,7 @@ const state = useCountdown(targetDate, (interval = 1000))
 </template>
 <script>
   import { reactive } from 'vue'
-  import { useWheel } from 'vue3hooks'
+  import { useWheel } from 'vue3hook'
   export default {
     name: 'Wheel',
     setup() {
