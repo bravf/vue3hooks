@@ -142,7 +142,7 @@ export default {
 </template>
 <script>
   export default {
-    data() {
+    setup {
       const writeQState = useQuickState({
         name: '',
         gender: '',
@@ -184,7 +184,7 @@ const {
 </template>
 <script>
   export default {
-    data() {
+    setup {
       const detailSwitch = useSwitch()
       return {
         detailSwitch,
@@ -221,7 +221,7 @@ const {
 <script>
   // 监听 route 参数变化
   export default {
-    data() {
+    setup {
       useRouteQueryChange({ callback: () => {} })
     },
   }
@@ -259,7 +259,7 @@ useRouteQueryChange({
 </template>
 <script>
   export default {
-    data() {
+    setup {
       const searchQState = useQuickState({
         name: '',
         gender: '',
@@ -356,7 +356,7 @@ const move = useMove([options])
   import { useMove } from '../index.js'
   export default {
     name: 'Mouse',
-    data() {
+    setup {
       const divPos = { x: 100, y: 100 }
       const move = useMove({
         onMove: (pos, moveDistance) => {
@@ -401,7 +401,7 @@ const move = useFingerMove([options])
   import { useFingerMove } from '../index.js'
   export default {
     name: 'Mouse',
-    data() {
+    setup {
       const divPos = { x: 100, y: 100 }
       const move = useFingerMove({
         onMove: (pos, moveDistance) => {
@@ -444,7 +444,7 @@ const { state, setFull, exitFull, toggleFull } = useFullscreen(target, [options]
   import { useFullscreen } from '../index.js'
   export default {
     name: 'Fullscreen',
-    data() {
+    setup {
       const fullscreen = useFullscreen(() => this.$refs.div, {
         onFull: () => console.log('full'),
         onExitFull: () => console.log('exit full'),
@@ -477,7 +477,7 @@ const { state, start, stop, restart } = useInterval(callback, (delay = 1000), (i
   import { useInterval, useComputed } from '../index.js'
   export default {
     name: 'Interval',
-    data() {
+    setup {
       const msgCountdown = useInterval(
         () => {
           if (msgCountdown.state.counter >= 5) msgCountdown.stop()
@@ -514,7 +514,7 @@ const { start, stop } = useTimeout(callback, (delay = 1000), (immediate = true))
   import { useTimeout } from '../index.js'
   export default {
     name: 'Timeout',
-    data() {
+    setup {
       const timeout = useTimeout(() => {
         console.log('test timeout')
       })
@@ -545,7 +545,7 @@ const state = useTitle((title = document.title), (restoreOnUnmount = false))
   import { useTitle, useTimeout } from '../index.js'
   export default {
     name: 'Timeout',
-    data() {
+    setup {
       const title = useTitle('你好', true)
       useTimeout(() => {
         title.value = '世界'
@@ -591,7 +591,7 @@ const state = useCountdown(targetDate, (interval = 1000))
   import { useCountdown, useTimeout, useComputed } from '../index.js'
   export default {
     name: 'Countdown',
-    data() {
+    setup {
       const countdown = useCountdown()
       useTimeout(() => {
         countdown.targetDate = '2021-12-31 24:00:00'
@@ -619,7 +619,7 @@ const state = useCountdown(targetDate, (interval = 1000))
   import { useWheel } from '../index.js'
   export default {
     name: 'Wheel',
-    data() {
+    setup {
       const zoomState = {
         value: 1,
       }
