@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/main.js'),
-      name: 'vue3hooks',
+      name: 'vue3hook',
     },
     rollupOptions: {
       // make sure to externalize deps that shouldn't be bundled
