@@ -1,6 +1,7 @@
 {
   "name": "vue3hook",
-  "version": "0.0.2",
+  "version": "0.0.5",
+  "main": "dist/vue3hook.umd.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
