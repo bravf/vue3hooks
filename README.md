@@ -56,7 +56,7 @@ const testPromise = (testData, timeout) =>
   })
 export default {
   setup() {
-    const getList = () => () => testPromise([])
+    const getList = () => testPromise([])
     const getListReq = useRequest(getList, {
       auto: true,
     })
